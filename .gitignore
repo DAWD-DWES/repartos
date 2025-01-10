@@ -1,0 +1,7 @@
+/nbproject/private/
+composer.phar
+/vendor/
+/cache/*
+.env
+credentials.json
+client_secret.json
