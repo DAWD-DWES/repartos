@@ -13,7 +13,10 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario&key={{ $_ENV['MAP_API_KEY'] }}" async defer></script>
 <script src="js/mapa.js"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{ $_ENV['MAP_API_KEY'] }}&loading=async&callback=loadMapScenario">
+</script>
 @endsection
+
 

@@ -1,17 +1,30 @@
-function loadMapScenario() {
-    data = $("#miMapa").data();
-    map = new Microsoft.Maps.Map(document.getElementById('miMapa'), {
-        center: new Microsoft.Maps.Location(data.lat, data.lon),
-        mapTypeId: Microsoft.Maps.MapTypeId.canvasLight,
-        zoom: 17
+let map;
+
+async function loadMapScenario() {
+    const data = $("#miMapa").data();
+
+    const position = {
+        lat: Number(data.lat),
+        lng: Number(data.lon)
+    };
+
+    const {Map} = await google.maps.importLibrary("maps");
+    const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+
+    map = new Map(document.getElementById("miMapa"), {
+        center: position,
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapId: "DEMO_MAP_ID"
     });
-    var center = map.getCenter();
 
-    //Create custom Pushpin
-    var pin = new Microsoft.Maps.Pushpin(center, {});
-
-    //Add the pushpin to the map
-    map.entities.push(pin);
+    new AdvancedMarkerElement({
+        map,
+        position
+    });
 }
+
+window.loadMapScenario = loadMapScenario;
+
 
 
